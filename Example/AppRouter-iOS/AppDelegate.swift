@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AppRouter_iOS
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // 1. 获取 FlutterViewController
+        guard let navigationController = window?.rootViewController as? UINavigationController else {
+            fatalError("navigationController not found")
+        }
+        
+        // 2. 配置路由系统
+        setupRouter(with: navigationController)
+        
+        
         return true
+    }
+    
+    // MARK: - 路由系统配置
+    private func setupRouter(with navigationController: UINavigationController) {
+        // 1. 创建路由配置
+        let routerConfig = AppRouterConfig()
+        
+        // 2. 初始化路由系统
+        AppRouter.shared.initialize(
+            configurator: routerConfig,
+            navigationController: navigationController
+        )
+        
+        // 3. 设置模态展示样式
+        AppRouter.shared.modalPresentationStyle = .pageSheet
+        AppRouter.shared.modalTransitionStyle = .coverVertical
+        
+        // 4. 注册模块路由
+        registerModuleRoutes()
+        
+        print("✅ 路由系统初始化完成")
+        print("   已注册路由数量: \(routerConfig.routes.count)")
+        print("   已注册拦截器: \(routerConfig.interceptors.count)")
+    }
+    
+    // MARK: - 模块路由注册
+    private func registerModuleRoutes() {
+        // 注册示例模块
+        let exampleModule = ExampleModuleRouteRegistrar()
+        RouteRegistry.shared.registerModule(exampleModule, identifier: "example_module")
+        print("✅ 模块路由注册完成")
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

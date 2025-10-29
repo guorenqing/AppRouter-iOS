@@ -1,13 +1,13 @@
 use_frameworks!
 
-platform :ios, '10.0'
+platform :ios, '15.0'
 
 target 'AppRouter-iOS_Example' do
   pod 'AppRouter-iOS', :path => '../'
+  
+  pod 'SnapKit'
 
   target 'AppRouter-iOS_Tests' do
     inherit! :search_paths
-
-    pod 'FBSnapshotTestCase' , '~> 2.1.4'
   end
 end

@@ -1,27 +1,23 @@
 PODS:
   - AppRouter-iOS (0.1.0)
-  - FBSnapshotTestCase (2.1.4):
-    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
-  - FBSnapshotTestCase/Core (2.1.4)
-  - FBSnapshotTestCase/SwiftSupport (2.1.4):
-    - FBSnapshotTestCase/Core
+  - SnapKit (5.7.1)
 
 DEPENDENCIES:
   - AppRouter-iOS (from `../`)
-  - FBSnapshotTestCase (~> 2.1.4)
+  - SnapKit
 
 SPEC REPOS:
   trunk:
-    - FBSnapshotTestCase
+    - SnapKit
 
 EXTERNAL SOURCES:
   AppRouter-iOS:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AppRouter-iOS: 5de14a518abf3e5f2af05a1cc9ca148465448b2f
-  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  AppRouter-iOS: ff38cd209f863081983746ad04d2c4ebc0920649
+  SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
 
-PODFILE CHECKSUM: 423a266ebcfa0a751a1521eb051133cf770ffddd
+PODFILE CHECKSUM: 0191c64e584b9f72752b5f590def1aa6b9f0666a
 
 COCOAPODS: 1.16.2
