@@ -1,0 +1,6 @@
+framework module AppRouter_iOS {
+  umbrella header "AppRouter-iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}
