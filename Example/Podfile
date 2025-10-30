@@ -2,12 +2,14 @@ use_frameworks!
 
 platform :ios, '15.0'
 
-target 'AppRouter-iOS_Example' do
-  pod 'AppRouter-iOS', :path => '../'
-  
-  pod 'SnapKit'
+target 'AppRouter_Example' do
+  pod 'AppRouter', :path => '../'
 
-  target 'AppRouter-iOS_Tests' do
+  pod 'SnapKit'
+  
+  target 'AppRouter_Tests' do
     inherit! :search_paths
+
+    
   end
 end

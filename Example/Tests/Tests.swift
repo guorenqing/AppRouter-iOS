@@ -1,5 +1,5 @@
 import XCTest
-import AppRouter_iOS
+import AppRouter
 
 class Tests: XCTestCase {
     

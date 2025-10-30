@@ -4,17 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>AppRouter-iOS.xcscheme</key>
+		<key>AppRouter.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-AppRouter-iOS_Example.xcscheme</key>
+		<key>Pods-AppRouter_Example.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-AppRouter-iOS_Tests.xcscheme</key>
+		<key>Pods-AppRouter_Tests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

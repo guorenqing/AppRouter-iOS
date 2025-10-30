@@ -1,0 +1,6 @@
+framework module Pods_AppRouter_Tests {
+  umbrella header "Pods-AppRouter_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

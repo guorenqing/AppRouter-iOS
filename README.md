@@ -5,9 +5,9 @@
 [![License](https://img.shields.io/cocoapods/l/AppRouter-iOS.svg?style=flat)](https://cocoapods.org/pods/AppRouter-iOS)
 [![Platform](https://img.shields.io/cocoapods/p/AppRouter-iOS.svg?style=flat)](https://cocoapods.org/pods/AppRouter-iOS)
 
-# AppRouter-iOS 使用说明
+# AppRouter 使用说明
 
-AppRouter-iOS 是一个基于 Swift 语言的 iOS 路由系统，旨在简化应用内页面跳转和功能调用的管理，提高代码的模块化和可维护性。
+AppRouter 是一个基于 Swift 语言的 iOS 路由系统，旨在简化应用内页面跳转和功能调用的管理，提高代码的模块化和可维护性。
 
 ## 目录
 - [安装指南](#安装指南)
@@ -25,7 +25,7 @@ AppRouter-iOS 是一个基于 Swift 语言的 iOS 路由系统，旨在简化应
 ### CocoaPods 安装
 在你的 `Podfile` 中添加以下内容：
 ```ruby
-pod 'AppRouter-iOS', '~> 0.1.0'
+pod 'AppRouter', '~> 0.1.0'
 ```
 然后运行：
 ```bash
@@ -33,7 +33,7 @@ pod install
 ```
 
 ### 手动安装
-克隆仓库并将 `AppRouter-iOS/Classes` 目录下的所有文件添加到你的项目中。
+克隆仓库并将 `AppRouter/Classes` 目录下的所有文件添加到你的项目中。
 
 ## 快速开始
 
@@ -282,4 +282,4 @@ if result.isSuccess {
 
 ## 许可证
 
-AppRouter-iOS 基于 MIT 许可证开源，详情请参见 [LICENSE](LICENSE) 文件。
+AppRouter 基于 MIT 许可证开源，详情请参见 [LICENSE](LICENSE) 文件。
