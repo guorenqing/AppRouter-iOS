@@ -88,7 +88,7 @@ public class RouterAutomatedTest {
         print("🧪 实际测试路由: \(testableRoutes.count) 个")
         
         for route in testableRoutes {
-            await testRoute(route)
+            let _ = await testRoute(route)
         }
         
         await generateTestReport()

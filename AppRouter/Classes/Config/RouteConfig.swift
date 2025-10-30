@@ -351,7 +351,7 @@ public class RouteConfig {
         }
         
         // 检查导航类型是否与处理器类型匹配
-        if let navType = defaultNavigationType, !isPageRoute {
+        if let _ = defaultNavigationType, !isPageRoute {
             throw RouteError.validationFailed("功能路由不能设置导航类型")
         }
     }

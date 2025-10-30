@@ -16,7 +16,6 @@ public class ExampleModuleRouteRegistrar: ModuleRouteRegistrar {
             RouteConfig(
                 path: "/user/profile",
                 handler: .page { params in
-                    let userId = params["userId"] as? String ?? ""
                     return UIViewController()
                 },
                 testParamsBuilder: {

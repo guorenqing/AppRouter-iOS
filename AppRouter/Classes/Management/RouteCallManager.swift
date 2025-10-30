@@ -214,9 +214,7 @@ public class RouteCallManager: NSObject {
                 
                 return result
             } catch {
-                await MainActor.run {
-                    self.activeAsyncCalls.removeValue(forKey: context.id)
-                }
+                self.activeAsyncCalls.removeValue(forKey: context.id)
                 throw error
             }
         }
@@ -267,7 +265,7 @@ public class RouteCallManager: NSObject {
     
     public func cancelAllCalls() {
         // 取消所有功能调用
-        for (callID, task) in activeAsyncCalls {
+        for (_, task) in activeAsyncCalls {
             task.cancel()
         }
         activeAsyncCalls.removeAll()
@@ -287,7 +285,7 @@ public class RouteCallManager: NSObject {
         let paramsString = params.sorted(by: { $0.key < $1.key })
             .map { "\($0.key)=\($0.value)" }
             .joined(separator: "&")
-        return "\(path)?\(paramsString)".md5()
+        return "\(path)?\(paramsString)".sha256()
     }
     
     private func getCachedResult(for callKey: String) -> Any? {

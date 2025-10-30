@@ -149,7 +149,7 @@ extension RouteCallContext {
         let paramsString = mergedParams.sorted(by: { $0.key < $1.key })
             .map { "\($0.key)=\($0.value)" }
             .joined(separator: "&")
-        return "\(path)?\(paramsString)".md5()
+        return "\(path)?\(paramsString)".sha256()
     }
     
     public func getTestParams() -> [String: Any] {
@@ -191,12 +191,13 @@ extension RouteCallContext {
 
 // MARK: - String MD5 扩展
 extension String {
-    func md5() -> String {
-        let data = Data(self.utf8)
-        let hash = data.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) -> [UInt8] in
-            var hash = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
-            CC_MD5(bytes.baseAddress, CC_LONG(data.count), &hash)
-            return hash
+    
+    func sha256() -> String {
+        guard let data = self.data(using: .utf8) else { return "" }
+        
+        var hash = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
+        data.withUnsafeBytes {
+            _ = CC_SHA256($0.baseAddress, CC_LONG(data.count), &hash)
         }
         return hash.map { String(format: "%02x", $0) }.joined()
     }
