@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -34,7 +34,7 @@
 		2129D1271D51F3167931ECE5 /* Pods-AppRouter_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppRouter_Example.debug.xcconfig"; path = "Target Support Files/Pods-AppRouter_Example/Pods-AppRouter_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		4447C255F21129E891980D0C /* Pods-AppRouter_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppRouter_Tests.debug.xcconfig"; path = "Target Support Files/Pods-AppRouter_Tests/Pods-AppRouter_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		466823067F47AFB89F2FB23B /* Pods_AppRouter_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppRouter_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B5A29BE04ACB669FC4807A0 /* AppRouter.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = AppRouter.podspec; path = ../AppRouter.podspec; sourceTree = "<group>"; };
+		4B5A29BE04ACB669FC4807A0 /* AppRouter.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = AppRouter.podspec; path = ../AppRouter.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		50EC33F0D2388267977B4EC3 /* Pods-AppRouter_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppRouter_Tests.release.xcconfig"; path = "Target Support Files/Pods-AppRouter_Tests/Pods-AppRouter_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* AppRouter_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppRouter_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -52,28 +52,8 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		04AAD2852EB3080C00D0C11C /* PushNotification */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = PushNotification;
-			sourceTree = "<group>";
-		};
-		04AAD28D2EB3080C00D0C11C /* pages */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = pages;
-			sourceTree = "<group>";
-		};
+		04AAD2852EB3080C00D0C11C /* PushNotification */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = PushNotification; sourceTree = "<group>"; };
+		04AAD28D2EB3080C00D0C11C /* pages */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = pages; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */

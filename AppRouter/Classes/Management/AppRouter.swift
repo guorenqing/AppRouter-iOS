@@ -79,7 +79,7 @@ public class AppRouter {
     
     // MARK: - 路由跳转方法
     
-    /// 内部路由跳转
+    /// 路由执行
     @MainActor
     public func navigate(path: String, params: [String: Any]? = nil) async -> RouteResult {
         guard let routeConfig = _findRoute(path: path) else {

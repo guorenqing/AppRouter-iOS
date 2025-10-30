@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+  AppRouter 是一个基于 Swift 语言的 iOS 路由系统，旨在简化应用内页面跳转和功能调用的管理，提高代码的模块化和可维护性。
                        DESC
 
   s.homepage         = 'https://github.com/guorenqing/AppRouter-iOS'

@@ -1,285 +1,458 @@
-# AppRouter-iOS
+# AppRouter - iOS 路由框架
 
-[![CI Status](https://img.shields.io/travis/郭仁庆/AppRouter-iOS.svg?style=flat)](https://travis-ci.org/郭仁庆/AppRouter-iOS)
-[![Version](https://img.shields.io/cocoapods/v/AppRouter-iOS.svg?style=flat)](https://cocoapods.org/pods/AppRouter-iOS)
-[![License](https://img.shields.io/cocoapods/l/AppRouter-iOS.svg?style=flat)](https://cocoapods.org/pods/AppRouter-iOS)
-[![Platform](https://img.shields.io/cocoapods/p/AppRouter-iOS.svg?style=flat)](https://cocoapods.org/pods/AppRouter-iOS)
+![Swift](https://img.shields.io/badge/Swift-5.0+-orange.svg)
+![iOS](https://img.shields.io/badge/iOS-13.0+-blue.svg)
+![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)
 
-# AppRouter 使用说明
+一个功能强大、类型安全的 iOS 路由框架，支持页面导航、功能调用、拦截器、自动化测试等特性。
 
-AppRouter 是一个基于 Swift 语言的 iOS 路由系统，旨在简化应用内页面跳转和功能调用的管理，提高代码的模块化和可维护性。
+## 🌟 特性
 
-## 目录
-- [安装指南](#安装指南)
-- [快速开始](#快速开始)
-- [路由配置](#路由配置)
-- [页面路由](#页面路由)
-- [功能路由](#功能路由)
-- [拦截器](#拦截器)
-- [自动化测试](#自动化测试)
-- [常见问题](#常见问题)
-- [许可证](#许可证)
+- 🚀 **多类型路由** - 页面路由、同步功能、异步功能
+- 🛡️ **类型安全** - 完整的 Swift 类型系统支持
+- 🔒 **线程安全** - 内置并发控制和线程安全保护
+- 🎯 **智能导航** - Push、Modal、Replace 等多种导航方式
+- 🔄 **拦截器系统** - 支持重定向、替换、拒绝等操作
+- 🧪 **自动化测试** - 内置完整的路由测试框架
+- 📦 **模块化** - 支持模块化路由注册
+- 💾 **缓存系统** - 智能缓存和并发控制
+- 📊 **状态监控** - 实时路由状态追踪
 
-## 安装指南
+## 📋 要求
 
-### CocoaPods 安装
-在你的 `Podfile` 中添加以下内容：
+- iOS 13.0+
+- Swift 5.0+
+- Xcode 14.0+
+
+## 🚀 安装
+
+### Swift Package Manager
+
+在 `Package.swift` 中添加依赖：
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/your-username/AppRouter.git", from: "0.1.0")
+]
+```
+
+### CocoaPods
+
+在 `Podfile` 中添加：
+
 ```ruby
 pod 'AppRouter', '~> 0.1.0'
 ```
-然后运行：
-```bash
-pod install
-```
 
-### 手动安装
-克隆仓库并将 `AppRouter/Classes` 目录下的所有文件添加到你的项目中。
+## 🏗️ 快速开始
 
-## 快速开始
+### 1. 基础配置
 
-1. **初始化路由系统**
+在 `AppDelegate` 中初始化路由系统：
+
 ```swift
-// 在 AppDelegate 或 SceneDelegate 中
-private func setupRouter(with navigationController: UINavigationController) {
-    let routerConfig = AppRouterConfig()
-    AppRouter.shared.initialize(
-        configurator: routerConfig,
-        navigationController: navigationController
-    )
-    // 设置模态展示样式
-    AppRouter.shared.modalPresentationStyle = .pageSheet
-    AppRouter.shared.modalTransitionStyle = .coverVertical
-    // 注册模块路由
-    registerModuleRoutes()
-}
-```
+import AppRouter
 
-2. **注册路由**
-```swift
-// 在自定义的 RouterConfig 中
-private func registerDefaultRoutes() {
-    let defaultRoutes = [
-        // 页面路由
-        RouteConfig(
-            path: "/home",
-            handler: .page { params in
-                return HomeViewController()
-            }
-        ),
-        // 功能路由
-        RouteConfig(
-            path: "/getUserInfo",
-            handler: .sync { params in
-                return UserManager.shared.currentUser?.toDictionary() ?? ["status": "未登录"]
-            }
+@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        // 初始化路由系统
+        setupRouter()
+        return true
+    }
+    
+    private func setupRouter() {
+        let routerConfig = AppRouterConfig()
+        
+        AppRouter.shared.initialize(
+            configurator: routerConfig,
+            navigationController: navigationController
         )
-    ]
-    registerRoutes(defaultRoutes)
+        
+        // 设置模态展示样式
+        AppRouter.shared.modalPresentationStyle = .pageSheet
+        AppRouter.shared.modalTransitionStyle = .coverVertical
+        
+        print("✅ 路由系统初始化完成")
+    }
 }
 ```
 
-3. **使用路由进行页面跳转**
+### 2. 定义路由
+
+创建路由配置：
+
 ```swift
-// 推送页面
+// 页面路由
+let detailRoute = RouteConfig(
+    path: "/detail",
+    handler: .page { params in
+        let id = params["id"] as? String ?? ""
+        let title = params["title"] as? String
+        return DetailViewController(id: id, title: title)
+    },
+    defaultNavigationType: .push,
+    testParamsBuilder: {
+        return ["id": "test_123", "title": "测试详情页"]
+    }
+)
+
+// 同步功能路由
+let getUserInfoRoute = RouteConfig(
+    path: "/getUserInfo",
+    handler: .sync { params in
+        return UserManager.shared.currentUser?.toDictionary() ?? ["status": "未登录"]
+    }
+)
+
+// 异步功能路由
+let apiDataRoute = RouteConfig(
+    path: "/api/data",
+    handler: .async { params in
+        try await Task.sleep(nanoseconds: 1_000_000_000)
+        return ["data": ["item1", "item2"], "page": 1]
+    },
+    enableCaching: true,
+    cacheTimeout: 60.0
+)
+```
+
+### 3. 注册路由
+
+#### 方式一：直接注册
+```swift
+AppRouter.shared.registerRoute(detailRoute)
+AppRouter.shared.registerRoutes([getUserInfoRoute, apiDataRoute])
+```
+
+#### 方式二：模块化注册
+```swift
+// 创建模块注册器
+class UserModuleRouteRegistrar: ModuleRouteRegistrar {
+    func registerRoutes(to configurator: RouterConfigurator) {
+        let routes = [
+            RouteConfig(path: "/user/profile", handler: .page { _ in
+                return UserProfileViewController()
+            }),
+            RouteConfig(path: "/user/settings", handler: .page { _ in
+                return UserSettingsViewController()
+            })
+        ]
+        configurator.registerRoutes(routes)
+    }
+}
+
+// 注册模块
+let userModule = UserModuleRouteRegistrar()
+RouteRegistry.shared.registerModule(userModule, identifier: "user_module")
+```
+
+## 🎯 使用示例
+
+### 基本导航
+
+```swift
+// Push 导航
 Task {
     let result = await AppRouter.shared.push(
         path: "/detail",
         params: ["id": "123", "title": "详情页"]
     )
+    
+    if result.isSuccess {
+        print("导航成功")
+    } else {
+        print("导航失败: \(result.message ?? "未知错误")")
+    }
 }
 
-// 模态展示页面
+// Modal 展示
 Task {
     let result = await AppRouter.shared.present(
         path: "/login",
         params: ["source": "home"]
     )
 }
-```
 
-4. **调用功能路由**
-```swift
-// 调用同步功能
+// 替换当前页
 Task {
-    let result = await AppRouter.shared.call(
-        path: "/calculate",
-        params: ["a": 10, "b": 20, "operation": "add"]
+    let result = await AppRouter.shared.off(
+        path: "/newPage",
+        params: ["message": "替换当前页面"]
     )
 }
 
-// 调用异步功能
+// 关闭所有页面并跳转
 Task {
-    let result = await AppRouter.shared.call(
+    let result = await AppRouter.shared.offAll(
+        path: "/home",
+        params: [:]
+    )
+}
+```
+
+### 功能调用
+
+```swift
+// 同步功能调用
+Task {
+    let result = await AppRouter.shared.navigate(
+        path: "/getUserInfo",
+        params: [:]
+    )
+    
+    if let userInfo = result.data as? [String: Any] {
+        print("用户信息: \(userInfo)")
+    }
+}
+
+// 异步功能调用
+Task {
+    let result = await AppRouter.shared.navigate(
         path: "/api/data",
         params: ["page": 1, "size": 10]
     )
+    
+    if let data = result.data {
+        print("API数据: \(data)")
+    }
 }
 ```
 
-## 路由配置
+### 页面返回数据
 
-路由配置是通过 `RouteConfig` 类来完成的，每个路由配置包含以下主要属性：
-
-- `path`: 路由路径（如 "/home"、"/user/profile"）
-- `handler`: 路由处理方式（页面路由或功能路由）
-- `defaultNavigationType`: 默认导航类型（推送或模态）
-- `testParamsBuilder`: 测试参数构建器，用于自动化测试
-- `skipAutomatedTest`: 是否跳过自动化测试
-- `testTimeout`: 测试超时时间
-
-示例：
 ```swift
-RouteConfig(
-    path: "/webview",
-    handler: .page { params in
-        guard let urlString = params["url"] as? String,
-              let url = URL(string: urlString) else {
-            throw RouteError.missingRequiredParameter("url")
-        }
-        let webViewController = WebViewController(url: url)
-        webViewController.title = params["title"] as? String
-        return webViewController
-    },
-    testParamsBuilder: {
-        return [
-            "url": "https://www.example.com",
-            "title": "示例网页"
+class DetailViewController: UIViewController {
+    
+    @objc private func closeWithData() {
+        let result: [String: Any] = [
+            "selectedItem": "item123",
+            "action": "confirm",
+            "timestamp": Date().timeIntervalSince1970
         ]
-    },
-    testTimeout: 15.0
-)
-```
-
-## 页面路由
-
-页面路由用于导航到应用内的视图控制器，支持两种导航方式：
-
-1. **Push 导航**：将视图控制器推入导航栈
-```swift
-await AppRouter.shared.push(path: "/detail", params: ["id": "123"])
-```
-
-2. **Present 导航**：以模态方式展示视图控制器
-```swift
-await AppRouter.shared.present(path: "/login", params: ["source": "settings"])
-```
-
-## 功能路由
-
-功能路由用于调用特定功能并返回结果，分为同步和异步两种类型：
-
-1. **同步功能路由**：立即返回结果
-```swift
-RouteConfig(
-    path: "/calculate",
-    handler: .sync { params in
-        let a = params["a"] as? Double ?? 0
-        let b = params["b"] as? Double ?? 0
-        return ["result": a + b]
+        popRoute(result: result)
     }
-)
-```
-
-2. **异步功能路由**：用于需要异步处理的操作（如网络请求）
-```swift
-RouteConfig(
-    path: "/api/data",
-    handler: .async { params in
-        try await Task.sleep(nanoseconds: 1_000_000_000) // 模拟网络请求
-        return ["data": "模拟数据"]
+    
+    @objc private func closeWithoutData() {
+        popRoute() // 返回 nil
     }
-)
-```
-
-## 拦截器
-
-拦截器可以在路由处理前后执行自定义逻辑，如登录验证、日志记录等：
-
-```swift
-// 注册拦截器
-private func registerDefaultInterceptors() {
-    addInterceptor(LoginInterceptor())
-    addInterceptor(LogInterceptor())
 }
 
-// 自定义拦截器示例
-class LoginInterceptor: RouteInterceptor {
-    func intercept(context: RouteCallContext) async -> RouteResult? {
-        // 检查是否需要登录
-        if context.path.starts(with: "/user") && !UserManager.shared.isLoggedIn {
-            // 跳转到登录页
-            let loginResult = await AppRouter.shared.present(path: "/login")
-            if loginResult.isSuccess {
-                return nil // 继续处理原路由
-            } else {
-                return .failure("需要登录才能访问该页面")
-            }
+// 在调用方接收返回数据
+Task {
+    let result = await AppRouter.shared.push(path: "/detail", params: [:])
+    
+    if let data = result.data {
+        print("页面返回数据: \(data)")
+    }
+}
+```
+
+## 🔧 高级功能
+
+### 拦截器使用
+
+```swift
+// 登录拦截器
+public class LoginInterceptor: RouteInterceptor {
+    public func intercept(path: String, params: [String: Any]?) async -> InterceptorResult {
+        let needLoginRoutes = ["/user/profile", "/user/settings", "/payment"]
+        
+        if needLoginRoutes.contains(path) && !UserManager.shared.isLoggedIn {
+            print("🔐 需要登录，重定向到登录页")
+            return .redirect(RouteConfig(
+                path: "/login",
+                handler: { params in LoginViewController() },
+                defaultNavigationType: .modal
+            ))
         }
-        return nil // 继续处理
+        return .continue
     }
 }
+
+// 日志拦截器
+public class LogInterceptor: RouteInterceptor {
+    public func intercept(path: String, params: [String: Any]?) async -> InterceptorResult {
+        print("""
+        🚀 路由跳转:
+          路径: \(path)
+          参数: \(params ?? [:])
+          时间: \(Date())
+        """)
+        return .continue
+    }
+}
+
+// 注册拦截器
+routerConfig.addInterceptor(LogInterceptor())
+routerConfig.addInterceptor(LoginInterceptor())
 ```
 
-## 自动化测试
-
-AppRouter-iOS 内置了路由自动化测试功能，可以测试所有已注册的路由：
+### 自动化测试
 
 ```swift
 // 运行所有路由测试
 Task {
     let results = await RouterAutomatedTest.shared.runAllTests()
-    showTestResults(results)
+    
+    let stats = RouterAutomatedTest.shared.getTestStatistics()
+    print("测试完成: \(stats.passed)/\(stats.total) 通过")
 }
 
-// 显示测试结果
-private func showTestResults(_ results: [RouterAutomatedTest.RouteTestResult]) {
-    let stats = RouterAutomatedTest.shared.getTestStatistics()
-    // 显示测试统计信息...
+// 测试特定路由
+Task {
+    let route = RouteConfig(
+        path: "/test",
+        handler: .sync { params in
+            return ["status": "success", "data": params]
+        }
+    )
+    
+    let result = await RouterAutomatedTest.shared.testRoute(route)
+    print("测试结果: \(result.isSuccess ? "成功" : "失败")")
 }
 ```
 
-测试结果会包含每个路由的测试状态、耗时、错误信息等详细内容，并在控制台输出测试报告。
-
-## 常见问题
-
-1. **如何处理路由参数验证？**
-
-可以在路由处理函数中进行参数验证，使用 `throw RouteError.missingRequiredParameter` 抛出参数缺失错误：
+### 动态路由管理
 
 ```swift
-RouteConfig(
-    path: "/detail",
+// 动态添加路由
+let dynamicRoute = RouteConfig(
+    path: "/dynamic",
     handler: .page { params in
-        guard let id = params["id"] as? String else {
-            throw RouteError.missingRequiredParameter("id")
-        }
-        return DetailViewController(id: id)
+        return DynamicViewController()
     }
 )
+AppRouter.shared.registerRoute(dynamicRoute)
+
+// 检查路由是否存在
+if AppRouter.shared.containsRoute(for: "/detail") {
+    print("路由已注册")
+}
+
+// 移除路由
+AppRouter.shared.removeRoute(for: "/old-route")
 ```
 
-2. **如何获取当前顶层视图控制器？**
+### 状态监控
 
-可以使用内置的工具方法：
 ```swift
-if let topVC = getTopViewController() {
-    // 处理顶层视图控制器
+// 打印路由状态
+AppRouter.shared.printRouteStatus()
+
+// 获取活跃调用
+let activeCalls = AppRouter.shared.getActiveCalls()
+print("当前活跃调用: \(activeCalls.count)")
+
+// 取消特定调用
+if let firstCall = activeCalls.first {
+    AppRouter.shared.cancelCall(firstCall.id)
+}
+
+// 取消所有调用
+AppRouter.shared.cancelAllCalls()
+```
+
+## 📚 API 参考
+
+### 路由类型
+
+- `RouteType.page` - 页面路由
+- `RouteType.actionSync` - 同步功能路由  
+- `RouteType.actionAsync` - 异步功能路由
+
+### 导航类型
+
+- `NavigationType.push` - 推入导航栈
+- `NavigationType.modal` - 模态展示
+- `NavigationType.replaceCurrent` - 替换当前页面
+- `NavigationType.replaceAll` - 替换所有页面
+- `NavigationType.none` - 非页面导航
+
+### 拦截器结果
+
+- `.continue` - 继续执行原路由
+- `.redirect(RouteConfig)` - 重定向到新路由
+- `.replace(RouteConfig)` - 替换原路由
+- `.reject(Error)` - 拒绝并终止
+
+## 🔍 调试技巧
+
+### 查看路由状态
+
+```swift
+// 在需要的地方调用
+AppRouter.shared.printRouteStatus()
+
+// 输出示例：
+// === 路由状态 ===
+// 活跃调用数量: 2
+// 已注册路由数量: 15
+// 调用ID: A1B2C3D4, 类型: 页面, 路径: /detail
+// ===============
+```
+
+### 启用详细日志
+
+```swift
+// 添加日志拦截器
+routerConfig.addInterceptor(LogInterceptor())
+```
+
+## 🐛 故障排除
+
+### 常见问题
+
+1. **路由未找到**
+   - 检查路径是否正确（必须以 `/` 开头）
+   - 确认路由已注册
+   - 检查路径大小写
+
+2. **导航控制器未设置**
+   - 在初始化时设置导航控制器
+   - 确认 `navigationController` 不为 nil
+
+3. **拦截器循环重定向**
+   - 检查重定向逻辑，避免无限循环
+   - 设置最大重定向深度
+
+4. **内存泄漏**
+   - 使用弱引用避免循环引用
+   - 及时取消不需要的路由调用
+
+### 错误处理
+
+```swift
+do {
+    let result = await AppRouter.shared.push(path: "/detail", params: [:])
+    
+    if !result.isSuccess {
+        // 处理业务错误
+        showErrorAlert(message: result.message ?? "未知错误")
+    }
+} catch {
+    // 处理系统错误
+    print("路由调用失败: \(error)")
 }
 ```
 
-3. **如何处理路由跳转失败？**
+## 🤝 贡献
 
-路由操作会返回一个 `RouteResult` 对象，通过该对象可以判断操作是否成功：
+欢迎提交 Issue 和 Pull Request！
 
-```swift
-let result = await AppRouter.shared.push(path: "/detail", params: ["id": "123"])
-if result.isSuccess {
-    print("跳转成功")
-} else {
-    print("跳转失败: \(result.message ?? "未知错误")")
-}
-```
+## 📄 许可证
 
-## 许可证
+本项目采用 MIT 许可证。详见 [LICENSE](LICENSE) 文件。
 
-AppRouter 基于 MIT 许可证开源，详情请参见 [LICENSE](LICENSE) 文件。
+## 📞 支持
+
+如有问题，请通过以下方式联系：
+
+- 提交 [Issue](https://github.com/guorenqing/AppRouter-iOS/issues)
+- 发送邮件：guorenqing@sina.com
+
+---
+
+**AppRouter** - 让 iOS 路由变得更简单！ 🚀
