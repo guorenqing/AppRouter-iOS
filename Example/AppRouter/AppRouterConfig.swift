@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import AppRouter
+import iOSAppRouter
 
 /// 应用路由配置
 public class AppRouterConfig: BaseRouterConfigurator {

@@ -1,9 +1,9 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## AppRouter
+## SnapKit
 
-Copyright (c) 2025 郭仁庆 <renqing.guo@aminer.cn>
+Copyright (c) 2011-Present SnapKit Team - https://github.com/SnapKit
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,9 +24,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-## SnapKit
+## iOSAppRouter
 
-Copyright (c) 2011-Present SnapKit Team - https://github.com/SnapKit
+Copyright (c) 2025 郭仁庆 <guorenqing@sina.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

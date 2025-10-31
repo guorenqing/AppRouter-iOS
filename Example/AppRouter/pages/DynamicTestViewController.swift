@@ -7,7 +7,7 @@
 
 import UIKit
 import SnapKit
-import AppRouter
+import iOSAppRouter
 
 class DynamicTestViewController: UIViewController {
     

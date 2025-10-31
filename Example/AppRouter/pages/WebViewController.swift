@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 import SnapKit
-import AppRouter
+import iOSAppRouter
 
 class WebViewController: UIViewController {
     

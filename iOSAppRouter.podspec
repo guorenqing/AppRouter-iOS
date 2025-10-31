@@ -7,7 +7,7 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'AppRouter'
+  s.name             = 'iOSAppRouter'
   s.version          = '0.1.0'
   s.summary          = '一个基于swift语言的iOS路由系统'
 
@@ -18,23 +18,23 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-  AppRouter 是一个基于 Swift 语言的 iOS 路由系统，旨在简化应用内页面跳转和功能调用的管理，提高代码的模块化和可维护性。
+  iOSAppRouter 是一个基于 Swift 语言的 iOS 路由系统，旨在简化应用内页面跳转和功能调用的管理，提高代码的模块化和可维护性。
                        DESC
 
-  s.homepage         = 'https://github.com/guorenqing/AppRouter-iOS'
+  s.homepage         = 'https://github.com/guorenqing/iOSAppRouter'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { '郭仁庆' => 'guorenqing@sina.com' }
-  s.source           = { :git => 'https://github.com/guorenqing/AppRouter-iOS.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/guorenqing/iOSAppRouter.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '13.0'
   s.swift_versions = '5.0'
 
-  s.source_files = 'AppRouter/Classes/**/*'
+  s.source_files = 'iOSAppRouter/Classes/**/*'
   
   # s.resource_bundles = {
-  #   'AppRouter-iOS' => ['AppRouter-iOS/Assets/*.png']
+  #   'iOSAppRouter' => ['iOSAppRouter/Assets/*.png']
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'

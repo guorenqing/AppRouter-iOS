@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		04AAD29A2EB3081E00D0C11C /* LoginInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AAD2992EB3081E00D0C11C /* LoginInterceptor.swift */; };
 		04AAD29B2EB3081E00D0C11C /* AppRouterConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AAD2982EB3081E00D0C11C /* AppRouterConfig.swift */; };
+		04AAE0D42EB4C08F00D0C11C /* iOSAppRouter.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 04AAE0D32EB4C08F00D0C11C /* iOSAppRouter.podspec */; };
 		59B18C2BCC189986552B6CAB /* Pods_AppRouter_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C61E784D1E7F627D80C0E6 /* Pods_AppRouter_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -31,10 +32,10 @@
 /* Begin PBXFileReference section */
 		04AAD2982EB3081E00D0C11C /* AppRouterConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouterConfig.swift; sourceTree = "<group>"; };
 		04AAD2992EB3081E00D0C11C /* LoginInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInterceptor.swift; sourceTree = "<group>"; };
+		04AAE0D32EB4C08F00D0C11C /* iOSAppRouter.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = iOSAppRouter.podspec; path = ../iOSAppRouter.podspec; sourceTree = SOURCE_ROOT; };
 		2129D1271D51F3167931ECE5 /* Pods-AppRouter_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppRouter_Example.debug.xcconfig"; path = "Target Support Files/Pods-AppRouter_Example/Pods-AppRouter_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		4447C255F21129E891980D0C /* Pods-AppRouter_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppRouter_Tests.debug.xcconfig"; path = "Target Support Files/Pods-AppRouter_Tests/Pods-AppRouter_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		466823067F47AFB89F2FB23B /* Pods_AppRouter_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppRouter_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B5A29BE04ACB669FC4807A0 /* AppRouter.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = AppRouter.podspec; path = ../AppRouter.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		50EC33F0D2388267977B4EC3 /* Pods-AppRouter_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppRouter_Tests.release.xcconfig"; path = "Target Support Files/Pods-AppRouter_Tests/Pods-AppRouter_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* AppRouter_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppRouter_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -142,7 +143,7 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				4B5A29BE04ACB669FC4807A0 /* AppRouter.podspec */,
+				04AAE0D32EB4C08F00D0C11C /* iOSAppRouter.podspec */,
 				A0B25835F57DE6E2E6F320DC /* README.md */,
 				C019D672AA048ED201DF5464 /* LICENSE */,
 			);
@@ -261,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				04AAE0D42EB4C08F00D0C11C /* iOSAppRouter.podspec in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
@@ -305,13 +307,13 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AppRouter_Example/Pods-AppRouter_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AppRouter/AppRouter.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/iOSAppRouter/iOSAppRouter.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppRouter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSAppRouter.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

@@ -1,4 +1,4 @@
-# AppRouter - iOS 路由框架
+# iOSAppRouter - iOS 路由框架
 
 ![Swift](https://img.shields.io/badge/Swift-5.0+-orange.svg)
 ![iOS](https://img.shields.io/badge/iOS-13.0+-blue.svg)
@@ -32,7 +32,7 @@
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/your-username/AppRouter.git", from: "0.1.0")
+    .package(url: "https://github.com/your-username/iOSAppRouter.git", from: "0.1.0")
 ]
 ```
 
@@ -41,7 +41,7 @@ dependencies: [
 在 `Podfile` 中添加：
 
 ```ruby
-pod 'AppRouter', '~> 0.1.0'
+pod 'iOSAppRouter', '~> 0.1.0'
 ```
 
 ## 🏗️ 快速开始
@@ -51,7 +51,7 @@ pod 'AppRouter', '~> 0.1.0'
 在 `AppDelegate` 中初始化路由系统：
 
 ```swift
-import AppRouter
+import iOSAppRouter
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

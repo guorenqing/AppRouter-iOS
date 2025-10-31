@@ -1,9 +1,9 @@
 PODS:
-  - AppRouter (0.1.0)
+  - iOSAppRouter (0.1.0)
   - SnapKit (5.7.1)
 
 DEPENDENCIES:
-  - AppRouter (from `../`)
+  - iOSAppRouter (from `../`)
   - SnapKit
 
 SPEC REPOS:
@@ -11,13 +11,13 @@ SPEC REPOS:
     - SnapKit
 
 EXTERNAL SOURCES:
-  AppRouter:
+  iOSAppRouter:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AppRouter: 122acca9cae343ca63b11c689a544a1ba6773857
+  iOSAppRouter: 09aaa091548845cb792d7a098cd6151e02ff3214
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
 
-PODFILE CHECKSUM: 12be4caed9a147b86b60ea27204ae67f7e95eca1
+PODFILE CHECKSUM: a4d14cdcedb2c4ebdade1d783c45398e5e05919d
 
 COCOAPODS: 1.16.2

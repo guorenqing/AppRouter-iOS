@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import AppRouter
+import iOSAppRouter
 
 /// 登录拦截器
 public class LoginInterceptor: RouteInterceptor {

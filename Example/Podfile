@@ -3,7 +3,7 @@ use_frameworks!
 platform :ios, '15.0'
 
 target 'AppRouter_Example' do
-  pod 'AppRouter', :path => '../'
+  pod 'iOSAppRouter', :path => '../'
 
   pod 'SnapKit'
   

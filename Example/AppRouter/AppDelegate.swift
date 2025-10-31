@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AppRouter
+import iOSAppRouter
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
