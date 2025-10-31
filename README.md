@@ -32,7 +32,7 @@
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/your-username/iOSAppRouter.git", from: "0.1.0")
+    .package(url: "https://github.com/guorenqing/iOSAppRouter.git", from: "0.1.0")
 ]
 ```
 
@@ -450,7 +450,7 @@ do {
 
 如有问题，请通过以下方式联系：
 
-- 提交 [Issue](https://github.com/guorenqing/AppRouter-iOS/issues)
+- 提交 [Issue](https://github.com/guorenqing/iOSAppRouter/issues)
 - 发送邮件：guorenqing@sina.com
 
 ---
